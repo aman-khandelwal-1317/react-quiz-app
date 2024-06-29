@@ -7,7 +7,6 @@ const Quiz = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [quiz, setQuiz] = useState(null);
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [answers, setAnswers] = useState({});
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -51,7 +50,7 @@ const Quiz = () => {
     }, 1000);
 
     return () => clearInterval(timer);
-}, []);
+});
 
 
 const handleOptionChange = (questionId, optionId) => {

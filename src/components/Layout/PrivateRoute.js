@@ -10,9 +10,6 @@ const PrivateRoute = ({ children }) => {
     return <div>Loading...</div>;
   }
 
-
-  const token = localStorage.getItem('token');
-
   return user ? children : <Navigate to="/login" />;
 };
 

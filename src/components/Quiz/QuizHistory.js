@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import api from '../../context/api'; 
 import { AuthContext } from '../../context/AuthContext';
 
@@ -8,7 +8,6 @@ const QuizHistory = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchHistory = async () => {
@@ -25,7 +24,7 @@ const QuizHistory = () => {
     if (user) {
     fetchHistory();
     }
-  }, []);
+  });
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error loading quiz history</div>;

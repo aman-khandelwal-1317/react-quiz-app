@@ -1,14 +1,10 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import api from '../../context/api'; 
-import { AuthContext } from '../../context/AuthContext';
 
 const QuizList = () => {
   const [quizzes, setQuizzes] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('All');
-
-  const { user } = useContext(AuthContext);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchQuizzes = async () => {
@@ -23,7 +19,6 @@ const QuizList = () => {
     fetchQuizzes();
   }, []);
 
-  const categories = ['All', ...new Set(quizzes.map(quiz => quiz.category))];
 
   const filteredQuizzes = selectedCategory === 'All'
     ? quizzes
