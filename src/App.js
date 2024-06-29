@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {  Routes, Route } from 'react-router-dom';
+import Navbar from './components/Layout/Navbar';
+import Login from './components/Auth/Login';
+import Register from './components/Auth/Register';
+import QuizList from './components/Quiz/QuizList';
+import Quiz from './components/Quiz/Quiz';
+import Result from './components/Quiz/Result';
+import PrivateRoute from './components/Layout/PrivateRoute';
+import { AuthProvider } from './context/AuthContext';
+import QuizHistory from './components/Quiz/QuizHistory';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AuthProvider>
+     
+        <Navbar />
+        <div className="container mt-4">
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route path="/" element={<PrivateRoute><QuizList /></PrivateRoute>} />
+            <Route path="/quiz/:id" element={<PrivateRoute><Quiz /></PrivateRoute>} />
+            <Route path="/quiz/history" element={<PrivateRoute><QuizHistory /></PrivateRoute>} />
+            <Route path="/quiz/result/:resultId" element={<PrivateRoute><Result /></PrivateRoute>} />
+          </Routes>
+        </div>
+     
+    </AuthProvider>
   );
-}
+};
 
 export default App;
